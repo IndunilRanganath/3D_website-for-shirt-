@@ -33,14 +33,75 @@ const Customizer = () => {
       case 'colorpicker':
         return <ColorPiker />;
       case 'filepicker':
-        return <FilePicker />;
+        return <FilePicker 
+          file={file}
+          setFile={setFile}
+          readFile={readFile}
+        />;
       case 'aipicker':
-        return <AIPicker />;
+        return <AIPicker 
+          promt={promt}
+          setPrompt={generatingImg}
+          handleSubmit={handleSubmit}
+        />;
       default:
         return null;
 
     }
   }
+
+  const handleSubmit = async(type) => {
+    if(!promt) return alert("Please enter a prompt");
+    try {
+      //call backend
+    }catch(error){
+      alert(error);
+    }finally{
+      setgeneratingImg(false);
+      setActiveEditorTab('');
+    }
+  }
+
+const handleDecals = (type, result) => {
+    const decalType = DecalTypes[type];
+
+    state[decalType.stateProperty] = result;
+
+    if(!activeFilterTab[decalType.filterTab]) {
+      handleActiveFilterTab(decalType.filterTab)
+  }
+}
+
+const handleActiveFilterTab = (tabName) => {
+  switch (tabName) {
+    case 'logoShirt':
+        state.isLogoTexture = !activeFilterTab[tabName];
+      break;
+    case 'stylishShirt':
+      state.isFullTexture = !activeFilterTab[tabName];
+    default:
+      state.isLogoTexture = true;
+      state.isFullTexture = false;
+  }
+
+  //after setting the state, activeFilterTab will be updated
+  setActiveEditorTab((prevState) => {
+    return{
+      ...prevState,
+      [tabName]: !prevState[tabName]
+    }
+  })
+
+}
+
+const readFile = (type) => {
+    reader(file)
+    .then((result) => {
+      handleDecals(type, result);
+      setActiveEditorTab('');
+    })
+  }
+
 
   return (
     <AnimatePresence>
@@ -84,8 +145,8 @@ const Customizer = () => {
                 key={tab.name}
                 tab={tab}
                 isFilterTab
-                isActiveTab=""
-                handleClick={() => {}}
+                isActiveTab={activeFilterTab[tab.name]}
+                handleClick={() => handleActiveFilterTab(tab.name)}
               />
             ))}
 
