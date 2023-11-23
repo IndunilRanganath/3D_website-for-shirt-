@@ -41,7 +41,8 @@ const Customizer = () => {
       case 'aipicker':
         return <AIPicker 
           promt={promt}
-          setPrompt={generatingImg}
+          setPrompt={setPrompt}
+          generatingImg={generatingImg}
           handleSubmit={handleSubmit}
         />;
       default:
@@ -53,7 +54,24 @@ const Customizer = () => {
   const handleSubmit = async(type) => {
     if(!promt) return alert("Please enter a prompt");
     try {
-      //call backend
+      setgeneratingImg(true)
+
+      const response = await fetch('http://localhost:8080/api/v1/dalle' , {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt
+        })
+      });
+
+      const data = await response.json();
+
+      handleDecals(type, `data:image/png;base64,${data.photo}`);
+      
+
+
     }catch(error){
       alert(error);
     }finally{
