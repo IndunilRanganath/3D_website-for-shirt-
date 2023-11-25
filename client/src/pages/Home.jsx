@@ -25,28 +25,21 @@ const Home = () => {
               <img
                  src={logo}
                  alt='logo'
-                 className='w-100 h-12 object-contain'
+                 className='object-contain h-8 w-100 md:h-12 md:w-100'
               />
             </motion.header>
             <motion.div {...headContainerAnimation}>
               <motion.div {...headTextAnimation}>
-              <h1 className="head-text"
-                  style={{
-                  fontSize: "clamp(3.5rem, 8vw, 8rem)",
-                  lineHeight: "clamp(4.5rem, 8vw, 9rem)",
-                  color: "#fff"
-                }}
-              >
-            LET'S <br className="xl:block hidden" /> CHOOSE IT.
+              <h1 className="font-sans text-5xl font-bold text-gray-100 md:text-9xl md:mb-6">
+            LET'S <br className="hidden xl:block " /> CHOOSE IT.
             </h1>
               </motion.div>
-              
               <motion.div
               {...headContentAnimation}
               className="flex flex-col gap-5"
               style={{ width: "clamp(20rem, 50vw, 40rem)" }}
               >
-              <p className="max-w-md mt-10 mb-10 font-normal text-blue-400 text-base">
+              <p className="my-3 text-base text-blue-400 md:text-xl">
               Create your unique and exclusive shirt with our brand-new 3D customization tool. <strong>Unleash your imagination</strong>{" "} and define your own style.
               </p>
               </motion.div>
@@ -55,10 +48,8 @@ const Home = () => {
                 type='filled'
                 title='Customize It' 
                 handleClick={() => state.intro = false}
-                customStyles='w-fit px-4 py-2.5 font-bold text-sm'
+                customStyles='w-fit px-4 py-2.5 font-bold text-sm md:my-10'
               />
-
-
             </motion.div>
           </motion.section>
         )}

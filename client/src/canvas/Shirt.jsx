@@ -25,6 +25,7 @@ const Shirt = () => {
                 material={materials.lambert1}
                 material-roughness={1}
                 dispose={null}
+                
             >
                 {snap.isFullTexture && (
                     <Decal
@@ -32,6 +33,7 @@ const Shirt = () => {
                         rotation={[0, 0, 0]}
                         scale={1}
                         map={fullTexture}
+                        
                     />
                 )}
 
@@ -44,6 +46,7 @@ const Shirt = () => {
                         map_anisotropy= {16}
                         depthTest={false}
                         depthWrite={true}
+                        
                     />
                 )}
 
