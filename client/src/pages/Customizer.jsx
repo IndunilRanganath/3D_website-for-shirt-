@@ -28,7 +28,7 @@ const Customizer = () => {
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
-        return <ColorPicker />
+        return <ColorPicker/>
       case "filepicker":
         return <FilePicker
           file={file}
